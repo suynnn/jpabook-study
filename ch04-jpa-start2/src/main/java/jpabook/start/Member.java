@@ -4,14 +4,17 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "MEMBER")
+@Table(name = "MEMBER", uniqueConstraints = {@UniqueConstraint(
+        name = "NAME_AGE_UNIQUE",
+        columnNames = {"NAME", "AGE"}
+)}) // 유니크 제약조건 추가
 public class Member {
 
     @Id
     @Column(name = "ID")
     private String id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false, length = 10)   // 제약사항 추가
     private String username;
 
     private Integer age;
